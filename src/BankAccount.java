@@ -5,17 +5,18 @@ public class BankAccount {
     private String name;
     private double balance;
     private double overdraft;
-    private boolean isUsingOverdraft;
+    private double limitOverdaft;
 
     public BankAccount(String name, double balance, double overdraft){
         this.name = name;
         this.balance = balance;
+        this.limitOverdaft = overdraft;
         this.overdraft = overdraft;
     }
 
-    // verifica se utilizou o cheque especial
-    public boolean isUsingOverdraft(){
-        return true;
+    // verifica se está utilizando o cheuqe especial
+    public boolean isUsingOverdraf(){
+        return balance == 0 && overdraft < limitOverdaft;
     }
 
     // consultar dinheiro
@@ -25,23 +26,32 @@ public class BankAccount {
 
     // sacar dinheiro
     public boolean withdraw(double amount){
+
         if ( balance >= amount) {
             balance -= amount;
             return true;
-        } else {
-            if (balance + overdraft  >= amount) {
-                double result = amount - balance;
-                balance = 0;
-                overdraft -= result;
-                return true;
-            }
         }
+
+        if (balance + overdraft  >= amount) {
+            double usedOverdraft = amount - balance;
+            balance = 0;
+            overdraft -= usedOverdraft;
+
+            // cobraça da taxa de 20% sobre o valor usado no cheque especial
+            double fee = usedOverdraft * 0.20;
+            overdraft -= fee;
+
+            return true;
+        }
+
         return false;
     }
 
     // depositar dinheiro
     public boolean deposit(double amount){
-        if (amount <= 0) { return false; }
+        if (amount <= 0) {
+            return false;
+        }
 
         balance += amount;
         return true;
@@ -57,6 +67,4 @@ public class BankAccount {
 
     // Setters
     public void setName(String name){ this.name = name; }
-    public void setBalance(double balance){ this.balance = balance; }
-    public void setOverdraft(double overdraft){ this.overdraft = overdraft; }
 }

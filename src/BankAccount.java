@@ -4,32 +4,24 @@ public class BankAccount {
     private final int id = ++counter;
     private String name;
     private double balance;
-    private boolean hasOverdraft;
     private double overdraft;
 
-    public BankAccount(String name, double balance){
+    public BankAccount(String name, double balance, double overdraft){
         this.name = name;
         this.balance = balance;
-        this.hasOverdraft = false;
-    }
-
-    // Alterar o cheque especial para true
-    public void enableOverdraft() {
-        this.hasOverdraft = true;
+        this.overdraft = overdraft;
     }
 
     // consultar dinheiro
     public double checkBalance(){
-        return hasOverdraft ? balance + overdraft : balance;
+        return  balance + overdraft;
     }
 
     // sacar dinheiro
     public boolean withdraw(double amount){
-        if (hasOverdraft) {
-            if ( balance + overdraft >= amount) {
-                balance -= amount;
-                return true;
-            }
+        if ( balance + overdraft >= amount) {
+            balance -= amount;
+            return true;
         } else {
             if (balance >= amount) {
                 balance -= amount;
@@ -37,6 +29,12 @@ public class BankAccount {
             }
         }
         return false;
+    }
+
+    // depositar dinheiro
+    public boolean deposit(double amount){
+        balance += amount;
+        return true;
     }
 
     // Getters
@@ -49,5 +47,4 @@ public class BankAccount {
     public void setName(String name){ this.name = name; }
     public void setBalance(double balance){ this.balance = balance; }
     public void setOverdraft(double overdraft){ this.overdraft = overdraft; }
-    public void setHasOverdraft(boolean hasOverdraft){ this.hasOverdraft = hasOverdraft; }
 }

@@ -13,16 +13,17 @@ public class Main {
 
         double limitOverdraft = (balance > 500 ? balance * 0.50 : 50);
 
-        var bank1 = new BankAccount(name, balance);
+        var bank1 = new BankAccount(name, balance, limitOverdraft);
 
-        if (balance > 500){
-            bank1.enableOverdraft();
-            bank1.setOverdraft(limitOverdraft);
-        }
 
         if (bank1.withdraw(200.00)){
             System.out.println("Deu certo! Saldo atual: " + bank1.getBalance());
         }
+
+        if (bank1.deposit(1.00)) {
+            System.out.println("Deu certo! Saldo atual: " + bank1.getBalance());
+        }
+
 
         System.out.printf("O id: %s. nome: %s, saldo: %s, cheque especial: %s)",bank1.getId(),bank1.getName(),bank1.getBalance(),bank1.getOverdraft());
     }

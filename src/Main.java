@@ -15,18 +15,19 @@ public class Main {
 
         var bank1 = new BankAccount(name, balance, limitOverdraft);
 
+        System.out.println("Qual o valor do saque: ");
+        double amount = scanner.nextDouble();
 
-        if (bank1.withdraw(200.00)){
-            System.out.println("Deu certo! Saldo atual: " + bank1.getBalance());
+        if (bank1.withdraw(amount)){
+            System.out.println("Saque efetuado! Saldo atual: " + bank1.getBalance() + " Cheque especial: " + bank1.getOverdraft());
+        } else {
+            System.out.println("Saque não efetuado! Saldo atual: " + bank1.getBalance() + " Cheque especial: " + bank1.getOverdraft());
         }
 
         if (bank1.deposit(1.00)) {
-            System.out.println("Deu certo! Saldo atual: " + bank1.getBalance());
+            System.out.println("Deposito efetuado! Saldo atual: " + bank1.getBalance());
         }
-
-
-        System.out.printf("O id: %s. nome: %s, saldo: %s, cheque especial: %s)",bank1.getId(),bank1.getName(),bank1.getBalance(),bank1.getOverdraft());
-    }
+}
 
 
 
@@ -41,22 +42,10 @@ public class Main {
 
  */
 
-// depositar dinheiro
-/*
-    Procura o id
-    Se nao encontrou -> sai
-
-    Adiciona depósito ao balance
-
- */
-
 // pagar um boleto
 
 
 
 
 // verificar se a conta esta utillizando cheque especial
-/*
-    Verifica se o balance
- */
 

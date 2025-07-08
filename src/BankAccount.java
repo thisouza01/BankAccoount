@@ -5,11 +5,17 @@ public class BankAccount {
     private String name;
     private double balance;
     private double overdraft;
+    private boolean isUsingOverdraft;
 
     public BankAccount(String name, double balance, double overdraft){
         this.name = name;
         this.balance = balance;
         this.overdraft = overdraft;
+    }
+
+    // verifica se utilizou o cheque especial
+    public boolean isUsingOverdraft(){
+        return true;
     }
 
     // consultar dinheiro
@@ -19,12 +25,14 @@ public class BankAccount {
 
     // sacar dinheiro
     public boolean withdraw(double amount){
-        if ( balance + overdraft >= amount) {
+        if ( balance >= amount) {
             balance -= amount;
             return true;
         } else {
-            if (balance >= amount) {
-                balance -= amount;
+            if (balance + overdraft  >= amount) {
+                double result = amount - balance;
+                balance = 0;
+                overdraft -= result;
                 return true;
             }
         }
@@ -34,9 +42,12 @@ public class BankAccount {
     // depositar dinheiro
     public boolean deposit(double amount){
         if (amount <= 0) { return false; }
+
         balance += amount;
         return true;
     }
+
+
 
     // Getters
     public int getId(){ return id; }

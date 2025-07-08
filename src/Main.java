@@ -18,8 +18,10 @@ public class Main {
         if (balance > 500){
             bank1.enableOverdraft();
             bank1.setOverdraft(limitOverdraft);
+        }
 
-            System.out.println(bank1.checkBalance());
+        if (bank1.withdraw(200.00)){
+            System.out.println("Deu certo! Saldo atual: " + bank1.getBalance());
         }
 
         System.out.printf("O id: %s. nome: %s, saldo: %s, cheque especial: %s)",bank1.getId(),bank1.getName(),bank1.getBalance(),bank1.getOverdraft());

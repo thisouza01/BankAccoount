@@ -5,7 +5,7 @@ public class BankAccount {
     private String name;
     private double balance;
     private boolean hasOverdraft;
-    private double defaultOverdraft;
+    private double overdraft;
 
     public BankAccount(String name, double balance){
         this.name = name;
@@ -20,13 +20,13 @@ public class BankAccount {
 
     // consultar dinheiro
     public double checkBalance(){
-        return hasOverdraft ? balance + defaultOverdraft : balance;
+        return hasOverdraft ? balance + overdraft : balance;
     }
 
     // sacar dinheiro
     public boolean withdraw(double amount){
         if (hasOverdraft) {
-            if ( balance + defaultOverdraft >= amount) {
+            if ( balance + overdraft >= amount) {
                 balance -= amount;
                 return true;
             }
@@ -43,11 +43,11 @@ public class BankAccount {
     public int getId(){ return id; }
     public String getName(){ return name; }
     public double getBalance(){ return balance; }
-    public double getOverdraft(){ return defaultOverdraft; }
+    public double getOverdraft(){ return overdraft; }
 
     // Setters
     public void setName(String name){ this.name = name; }
     public void setBalance(double balance){ this.balance = balance; }
-    public void setOverdraft(double overdraft){ this.defaultOverdraft = overdraft; }
+    public void setOverdraft(double overdraft){ this.overdraft = overdraft; }
     public void setHasOverdraft(boolean hasOverdraft){ this.hasOverdraft = hasOverdraft; }
 }

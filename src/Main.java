@@ -19,8 +19,11 @@ public class Main {
         int option = 0;
 
         while(option != 4) {
+            System.out.println("================================================");
             System.out.println("1- Consultar \n2- Sacar \n3- Depositar\n4- Sair");
+            System.out.println("----");
             option = scanner.nextInt();
+            System.out.println("================================================");
 
             switch (option) {
                 case 1:
@@ -51,8 +54,17 @@ public class Main {
                     }
                     break;
 
-                default:
+                case 5:
+                    System.out.println("Qual o código do boleto?");
+                    int billCode = scanner.nextInt();
+                    System.out.println("Qual o valor do boleto:");
+                    double amount = scanner.nextDouble();
 
+                    var newBill = new Bill(billCode, amount);
+
+                    if(newBill.payBill()){
+
+                    }
             }
         }
 

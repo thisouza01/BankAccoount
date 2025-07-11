@@ -57,8 +57,6 @@ public class BankAccount {
         return true;
     }
 
-
-
     // Getters
     public int getId(){ return id; }
     public String getName(){ return name; }
@@ -67,4 +65,5 @@ public class BankAccount {
 
     // Setters
     public void setName(String name){ this.name = name; }
+
 }

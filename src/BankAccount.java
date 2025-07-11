@@ -15,7 +15,7 @@ public class BankAccount {
     }
 
     // verifica se está utilizando o cheuqe especial
-    public boolean isUsingOverdraf(){
+    public boolean isUsingOverdraft(){
         return balance == 0 && overdraft < limitOverdaft;
     }
 
@@ -56,6 +56,7 @@ public class BankAccount {
         balance += amount;
         return true;
     }
+
 
     // Getters
     public int getId(){ return id; }

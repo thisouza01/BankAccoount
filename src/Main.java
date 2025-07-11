@@ -18,16 +18,16 @@ public class Main {
 
         int option = 0;
 
-        while(option != 4) {
+        while(option != 5) {
             System.out.println("================================================");
-            System.out.println("1- Consultar \n2- Sacar \n3- Depositar\n4- Sair");
+            System.out.println("1- Consultar \n2- Sacar \n3- Depositar\n4- Boleto\n5- Sair");
             System.out.println("----");
             option = scanner.nextInt();
             System.out.println("================================================");
 
             switch (option) {
                 case 1:
-                    System.out.println("Saldo atual: " + (bank1.getBalance()+bank1.getOverdraft()) + " | Cheque especial: " + bank1.getOverdraft());
+                    System.out.println("Saldo atual + cheque especial: " + (bank1.getBalance()+bank1.getOverdraft()) + " | Cheque especial: " + bank1.getOverdraft());
                     break;
 
                 case 2:
@@ -40,7 +40,7 @@ public class Main {
                         System.out.println("Saque não efetuado! Saldo atual: " + (bank1.getBalance()+bank1.getOverdraft()));
                     }
 
-                    if (bank1.isUsingOverdraf()) {
+                    if (bank1.isUsingOverdraft()) {
                         System.out.println("Utilizou o cheque especial! Saldo atual dele: " + bank1.getOverdraft());
                     }
 
@@ -54,17 +54,21 @@ public class Main {
                     }
                     break;
 
-                case 5:
-                    System.out.println("Qual o código do boleto?");
-                    int billCode = scanner.nextInt();
+                case 4:
                     System.out.println("Qual o valor do boleto:");
-                    double amount = scanner.nextDouble();
+                    double amountBill = scanner.nextDouble();
 
-                    var newBill = new Bill(billCode, amount);
-
-                    if(newBill.payBill()){
-
+                    if (bank1.withdraw(amountBill)){
+                        System.out.println("Boleto pago! Saldo atual: " + (bank1.getBalance()+bank1.getOverdraft()));
+                        } else {
+                            System.out.println("Boleto não pago! Saldo atual: " + (bank1.getBalance()+bank1.getOverdraft()));
                     }
+
+                    if (bank1.isUsingOverdraft()) {
+                        System.out.println("Utilizou o cheque especial! Saldo atual dele: " + bank1.getOverdraft());
+                    }
+
+                    break;
             }
         }
 
